@@ -1,0 +1,190 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f4f4f4;
+}
+.navbar {
+    display: flex;
+    background: #222;
+    color: #fff;
+    padding: 10px;
+    gap: 10px;
+}
+.navbar button {
+    background: #444;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+.navbar button.active {
+    background: #007bff;
+}
+.navbar button:hover {
+    background: #0056b3;
+}
+#mainView {
+    padding: 20px;
+    min-height: 80vh;
+    transition: all 0.5s;
+}
+#modalOverlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s;
+}
+#modalOverlay.hidden {
+    display: none;
+}
+.modal {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    min-width: 350px;
+    max-width: 90vw;
+    animation: modalIn 0.4s cubic-bezier(.68,-0.55,.27,1.55);
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+/* Espaciado entre elementos del formulario modal */
+.modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.modal label {
+    font-weight: 500;
+    margin-bottom: 3px;
+}
+
+/* Scroll en modal si se sale de la pantalla */
+.modal {
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+/* Scroll en listas de búsqueda si son largas */
+.search-list {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+@keyframes modalIn {
+    0% { transform: scale(0.7) rotateY(-30deg); opacity: 0; }
+    100% { transform: scale(1) rotateY(0); opacity: 1; }
+}
+.fade-in {
+    animation: fadeIn 0.7s;
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.dashboard-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.4s;
+}
+.dashboard-card:hover {
+    transform: scale(1.03) rotate(-1deg);
+}
+.list {
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: box-shadow 0.3s;
+}
+.list:hover {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.13);
+}
+.search-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+input[type="text"], input[type="number"] {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: 180px;
+    margin-bottom: 3px;
+}
+/* Botones del modal en horizontal */
+.modal-btns {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 8px;
+}
+.modal-btns button {
+    flex: 1;
+    padding: 8px 0;
+    border-radius: 5px;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.modal-btns .btn-green {
+    background: #28a745;
+    color: #fff;
+}
+.modal-btns .btn-green:hover {
+    background: #218838;
+}
+.modal-btns .btn-red {
+    background: #dc3545;
+    color: #fff;
+}
+.modal-btns .btn-red:hover {
+    background: #b71c1c;
+}
+button.add-btn {
+    background: #28a745;
+    color: #fff;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+button.add-btn:hover {
+    background: #218838;
+}
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+.tabs button {
+    background: #eee;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.tabs button.active {
+    background: #007bff;
+    color: #fff;
+}
+.tabs button:hover {
+    background: #0056b3;
+    color: #fff;
+}
