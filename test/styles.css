@@ -92,7 +92,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    transition: box-shadow 0.3s;
+    transition: box-shadow 0.3s, transform 0.3s;
 }
 .flip-front {
     background: #f1f5f9; /* Light Slate */
@@ -168,7 +168,7 @@ body {
     font-weight: 500;
     cursor: pointer;
     box-shadow: none;
-    transition: background 0.18s cubic-bezier(.4,0,.2,1), color 0.18s cubic-bezier(.4,0,.2,1), box-shadow 0.18s;
+    transition: background 0.18s cubic-bezier(.4,0,.2,1), color 0.18s cubic-bezier(.4,0,.2,1), box-shadow 0.18s, transform 0.2s;
     outline: none;
     border-bottom: 2.5px solid transparent;
     letter-spacing: 0.01em;
@@ -189,7 +189,13 @@ body {
     color: #fff;
     box-shadow: 0 2px 12px rgba(0,123,255,0.08);
     border-bottom: 2.5px solid #007bff;
-    transform: none;
+    transform: translate(.7px, 1.3px);
+    box-shadow: 1px 1.5px 10px black;
+}
+
+.navbar button:active {
+    transform: translate(2px, 3px);
+    box-shadow: 0 0 0 0 black;
 }
 
 /* === Estilos de la Vista Principal === */
@@ -329,7 +335,7 @@ input[type="text"]:focus, input[type="number"]:focus {
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s, color 0.2s;
+    transition: background 0.2s, color 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 .modal-btns .btn-green {
     background: #22c55e;
@@ -337,6 +343,8 @@ input[type="text"]:focus, input[type="number"]:focus {
 }
 .modal-btns .btn-green:hover {
     background: #16a34a;
+    transform: translate(.7px, 1.3px);
+    box-shadow: 1px 1.5px 10px black;
 }
 .modal-btns .btn-red {
     background: #ef4444;
@@ -344,6 +352,14 @@ input[type="text"]:focus, input[type="number"]:focus {
 }
 .modal-btns .btn-red:hover {
     background: #b91c1c;
+    transform: translate(.7px, 1.3px);
+    box-shadow: 1px 1.5px 10px black;
+}
+/* Efecto active para botones del modal */
+.modal-btns .btn-green:active,
+.modal-btns .btn-red:active {
+    transform: translate(2px, 3px);
+    box-shadow: 0 0 0 0 black;
 }
 
 /* === Estilos de los Botones Agregar === */
@@ -356,10 +372,17 @@ button.add-btn {
     cursor: pointer;
     font-size: 15px;
     font-weight: 600;
-    transition: background 0.2s;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
 }
 button.add-btn:hover {
     background: #16a34a;
+    transform: translate(.7px, 1.3px);
+    box-shadow: 1px 1.5px 10px black;
+}
+
+button.add-btn:active {
+    transform: translate(2px, 3px);
+    box-shadow: 0 0 0 0 black;
 }
 
 /* === Estilos de Lista (¿Duplicado?) === */
@@ -400,7 +423,7 @@ button.add-btn:hover {
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
-    transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+    transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.2s;
     box-shadow: 0 1px 4px rgba(100,116,139,0.06);
     outline: none;
     margin: 0 2px;
@@ -420,6 +443,13 @@ button.add-btn:hover {
     background: #dde6f7;
     color: #007bff;
     box-shadow: 0 2px 8px rgba(0,123,255,0.08);
+    transform: translate(.7px, 1.3px);
+    box-shadow: 1px 1.5px 10px black;
+}
+
+.tabs button:active {
+    transform: translate(2px, 3px);
+    box-shadow: 0 0 0 0 black;
 }
 
 /* === Estilos del Formulario de Tareas === */
@@ -485,10 +515,18 @@ button.add-btn:hover {
 #formTarea .form-actions .btn {
     background: #3b82f6; /* Indigo Blue */
     color: #ffffff;
+    transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.2s;
+    box-shadow: 0 1px 4px rgba(100,116,139,0.06);
+    outline: none;
 }
 
 #formTarea .form-actions .btn:hover {
     background: #2563eb; /* Darker Indigo Blue */
+    color: #fff;
+    box-shadow: 0 2px 12px rgba(59,130,246,0.13), 1px 1.5px 10px black;
+    transform: translate(.7px, 1.3px);
+    transform: translate(2px, 3px);
+    box-shadow: 0 0 0 0 black;
 }
 
 #formTarea .form-actions .btn-red {
@@ -574,7 +612,7 @@ button.add-btn:hover {
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.2s, box-shadow 0.2s;
+    transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.2s;
     box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
 }
 
@@ -585,25 +623,81 @@ button.add-btn:hover {
 
 .task-actions .edit-btn {
     background: #f59e0b; /* Ámbar */
+    transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.2s;
+    box-shadow: 0 1px 4px rgba(245,158,11,0.06);
+    outline: none;
 }
 
 .task-actions .edit-btn:hover {
     background: #d97706; /* Ámbar más oscuro */
+    color: #fff;
+    box-shadow: 0 2px 12px rgba(245,158,11,0.13), 1px 1.5px 10px black;
+    transform: translate(.7px, 1.3px);
+    transform: translate(2px, 3px);
+    box-shadow: 0 0 0 0 black;
 }
 
 .task-actions .finish-btn {
     background: #22c55e; /* Verde */
+    transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.2s;
+    box-shadow: 0 1px 4px rgba(34,197,94,0.06);
+    outline: none;
 }
 
 .task-actions .finish-btn:hover {
     background: #16a34a; /* Verde más oscuro */
+    color: #fff;
+    box-shadow: 0 2px 12px rgba(34,197,94,0.13), 1px 1.5px 10px black;
+    transform: translate(.7px, 1.3px);
+    transform: translate(2px, 3px);
+    box-shadow: 0 0 0 0 black;
 }
 
 .task-actions .delete-btn {
     background: #ef4444; /* Rojo */
+    transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.2s;
+    box-shadow: 0 1px 4px rgba(239,68,68,0.06);
+    outline: none;
 }
 
 .task-actions .delete-btn:hover {
     background: #b91c1c; /* Rojo más oscuro */
+    color: #fff;
+    box-shadow: 0 2px 12px rgba(239,68,68,0.13), 1px 1.5px 10px black;
+    transform: translate(.7px, 1.3px);
+    transform: translate(2px, 3px);
+    box-shadow: 0 0 0 0 black;
 }
+
+/* Efectos active para botones de acción de tareas */
+.task-actions button:active {
+    transform: translate(2px, 3px);
+    box-shadow: 0 0 0 0 black;
+}
+
+/* Efectos para botones del modal de tareas */
+.modal-btns button {
+    transition: background 0.18s, color 0.18s, box-shadow 0.18s, transform 0.2s;
+    box-shadow: 0 1px 4px rgba(100,116,139,0.06);
+    outline: none;
+}
+.modal-btns .btn-green:hover {
+    background: #16a34a;
+    color: #fff;
+    box-shadow: 0 2px 12px rgba(34,197,94,0.13), 1px 1.5px 10px black;
+    transform: translate(.7px, 1.3px);
+}
+.modal-btns .btn-red:hover {
+    background: #b91c1c;
+    color: #fff;
+    box-shadow: 0 2px 12px rgba(239,68,68,0.13), 1px 1.5px 10px black;
+    transform: translate(.7px, 1.3px);
+}
+.modal-btns .btn-green:active,
+.modal-btns .btn-red:active {
+    transform: translate(2px, 3px);
+    box-shadow: 0 0 0 0 black;
+}
+
+/* Efectos para botones de configuración */
 
