@@ -1,39 +1,210 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    background: #f4f4f4;
+/* === Tablero y Tarjetas === */
+.dashboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 20px; /* Diseño de la cuadrícula del tablero */
 }
+.card {
+    background: #f1f5f9; /* Fondo de pizarra clara para las tarjetas */
+    padding: 22px 18px 18px 18px; /* Espaciado interno para el contenido de la tarjeta */
+    border-radius: 14px; /* Bordes redondeados para las tarjetas */
+    box-shadow: 0 2px 8px rgba(100,116,139,0.06); /* Sombra sutil para profundidad */
+    text-align: center; /* Texto alineado al centro */
+    min-height: 200px; /* Altura mínima para las tarjetas */
+    display: flex; /* Flexbox para el diseño de la tarjeta */
+    flex-direction: column; /* Apilar contenido verticalmente */
+    justify-content: center; /* Centrar contenido verticalmente */
+    transition: transform 0.3s, box-shadow 0.3s; /* Efectos suaves al pasar el cursor */
+    border: 1.5px solid #e2e8f0; /* Borde gris pálido */
+}
+.card:hover {
+    transform: translateY(-4px) scale(1.01); /* Ligero levantamiento al pasar el cursor */
+    box-shadow: 0 8px 24px rgba(59,130,246,0.08); /* Sombra mejorada al pasar el cursor */
+}
+.card h3 {
+    font-size: 15px; /* Tamaño de fuente más pequeño */
+    color: #3b82f6; /* Color de texto azul índigo */
+    margin-bottom: 10px; /* Espaciado debajo del encabezado */
+    font-weight: 600; /* Texto semi-negrita */
+}
+.card p {
+    font-size: 24px; /* Texto más grande para énfasis */
+    font-weight: bold; /* Texto en negrita */
+    color: #1e293b; /* Color de texto gris carbón */
+    margin: 0; /* Eliminar margen predeterminado */
+}
+
+/* === Círculo de Progreso === */
+.progress-circle {
+    width: 80px; /* Ancho fijo para el círculo */
+    height: 80px; /* Altura fija para el círculo */
+    border-radius: 50%; /* Forma circular */
+    border: 6px solid #f59e0b; /* Borde ámbar dorado */
+    display: flex; /* Flexbox para centrar contenido */
+    justify-content: center; /* Centrar contenido horizontalmente */
+    align-items: center; /* Centrar contenido verticalmente */
+    font-size: 18px; /* Tamaño de texto dentro del círculo */
+    font-weight: bold; /* Texto en negrita */
+    margin: 0 auto 10px; /* Centrar horizontalmente y agregar margen inferior */
+    color: #f59e0b; /* Color de texto ámbar dorado */
+    background: #f8fafc; /* Fondo blanco nieve */
+    transition: transform 0.3s; /* Efecto suave al pasar el cursor */
+}
+.progress-circle:hover {
+    transform: scale(1.08); /* Ligero agrandamiento al pasar el cursor */
+}
+
+/* === Tarjeta de Ancho Completo === */
+.card.full-width {
+    grid-column: span 4; /* Ocupa todas las columnas en la cuadrícula */
+    text-align: left; /* Alinear texto a la izquierda */
+    background: #f1f5f9; /* Fondo de pizarra clara */
+}
+.card.full-width p {
+    margin: 5px 0; /* Espaciado vertical para párrafos */
+}
+
+/* === Contenedor de Volteo === */
+.flip-container {
+    perspective: 1000px; /* Perspectiva 3D para efecto de volteo */
+    height: 250px; /* Altura fija para el contenedor */
+    position: relative; /* Posicionamiento para elementos secundarios */
+}
+.flip-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s ease;
+    transform-style: preserve-3d;
+    transition-delay: 0.5s;
+}
+.flip-container:hover .flip-inner {
+    transform: rotateY(180deg);
+}
+.flip-front, .flip-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.3s;
+}
+.flip-front {
+    background: #f1f5f9; /* Light Slate */
+    padding: 20px;
+    box-sizing: border-box;
+}
+.flip-back {
+    transform: rotateY(180deg);
+    background: #f8fafc; /* Snow White */
+    padding: 20px;
+    box-sizing: border-box;
+}
+.flip-front:hover {
+    box-shadow: 0 8px 20px rgba(37,99,235,0.08);
+}
+.flip-front canvas {
+    width: 100% !important;
+    height: 120px !important;
+    background: #f8fafc;
+    border-radius: 8px;
+}
+.chart-label {
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 10px;
+}
+
+/* === Estilos Globales === */
+body {
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    margin: 0;
+    background: #cbd5e1; /* Gris más fuerte */
+    color: #1e293b; /* Charcoal Gray */
+    letter-spacing: 0.01em;
+    font-size: 16px;
+    min-height: 100vh;
+}
+#app {
+    max-width: 1200px;
+    margin: 0 auto;
+    box-shadow: 0 2px 16px rgba(100,116,139,0.04); /* Slate Blue shadow */
+    background: #cbd5e1; /* Gris claro intermedio */
+    min-height: 100vh;
+}
+
+/* === Estilos de la Navbar === */
 .navbar {
     display: flex;
-    background: #222;
-    color: #fff;
-    padding: 10px;
-    gap: 10px;
+    background: #23272e; /* Más sobrio, profesional */
+    color: #e5e5d8;
+    padding: 0 56px;
+    gap: 32px;
+    border-bottom: 2px solid #222222;
+    box-shadow: 0 4px 24px 0 rgba(34,34,34,0.10), 0 1.5px 0 #222222 inset;
+    align-items: center;
+    min-height: 84px;
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+    font-size: 19px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
 }
 .navbar button {
-    background: #444;
-    color: #fff;
+    background: #23272e;
+    color: #e5e5d8;
     border: none;
-    padding: 10px 20px;
+    padding: 13px 38px;
+    margin: 0 3px;
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: 500;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s;
+    box-shadow: none;
+    transition: background 0.18s cubic-bezier(.4,0,.2,1), color 0.18s cubic-bezier(.4,0,.2,1), box-shadow 0.18s;
+    outline: none;
+    border-bottom: 2.5px solid transparent;
+    letter-spacing: 0.01em;
+    position: relative;
+    overflow: hidden;
+    font-family: inherit;
 }
 .navbar button.active {
     background: #007bff;
+    color: #fff;
+    box-shadow: 0 4px 16px rgba(0,123,255,0.13);
+    border-bottom: 2.5px solid #fff;
+    font-weight: 600;
+    transform: none;
 }
-.navbar button:hover {
-    background: #0056b3;
+.navbar button:hover:not(.active) {
+    background: #2d323b;
+    color: #fff;
+    box-shadow: 0 2px 12px rgba(0,123,255,0.08);
+    border-bottom: 2.5px solid #007bff;
+    transform: none;
 }
+
+/* === Estilos de la Vista Principal === */
 #mainView {
-    padding: 20px;
+    padding: 20px 18px 16px 18px;
     min-height: 80vh;
     transition: all 0.5s;
+    background: #cbd5e1; /* Gris claro intermedio */
 }
+
+/* === Estilos del Modal === */
 #modalOverlay {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.6);
+    background: rgba(30,41,59,0.18);
     z-index: 1000;
     display: flex;
     align-items: center;
@@ -45,15 +216,15 @@ body {
 }
 .modal {
     background: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    padding: 32px 28px 28px 28px;
+    border-radius: 14px;
+    box-shadow: 0 4px 32px rgba(30,41,59,0.10);
     min-width: 350px;
-    max-width: 90vw;
+    max-width: 95vw;
     animation: modalIn 0.4s cubic-bezier(.68,-0.55,.27,1.55);
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
 }
 /* Espaciado entre elementos del formulario modal */
 .modal form {
@@ -90,41 +261,60 @@ body {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+/* === Estilos de las Tarjetas del Tablero === */
 .dashboard-card {
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    padding: 20px;
-    margin-bottom: 20px;
-    transition: transform 0.4s;
+    background: #f1f5f9;
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 24px;
+    margin-bottom: 24px;
+    transition: transform 0.3s;
 }
 .dashboard-card:hover {
-    transform: scale(1.03) rotate(-1deg);
+    transform: scale(1.02) rotate(-0.5deg);
+    box-shadow: 0 4px 16px rgba(37,99,235,0.08);
 }
+
+/* === Estilos de Lista === */
 .list {
-    background: #fff;
+    background: #f9fafb;
     border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-    padding: 15px;
-    margin-bottom: 15px;
-    transition: box-shadow 0.3s;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+    padding: 16px 18px;
+    margin-bottom: 16px;
+    transition: box-shadow 0.2s;
+    border: 1px solid #e2e8f0;
 }
 .list:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.13);
+    box-shadow: 0 4px 16px rgba(37,99,235,0.08);
+    border-color: #c7d2fe;
 }
+
+/* === Estilos de la Barra de Búsqueda === */
 .search-bar {
     display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
+    gap: 12px;
+    margin-bottom: 18px;
 }
 input[type="text"], input[type="number"] {
-    padding: 8px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: 180px;
+    padding: 9px 12px;
+    border-radius: 6px;
+    border: 1.5px solid #e2e8f0; /* Pale Gray */
+    width: 200px;
     margin-bottom: 3px;
+    background: #f8fafc; /* Snow White */
+    color: #1e293b; /* Charcoal Gray */
+    font-size: 15px;
+    transition: border 0.2s;
 }
-/* Botones del modal en horizontal */
+input[type="text"]:focus, input[type="number"]:focus {
+    outline: none;
+    border-color: #3b82f6; /* Indigo Blue */
+    background: #fff;
+}
+
+/* === Estilos de los Botones del Modal === */
 .modal-btns {
     display: flex;
     flex-direction: row;
@@ -133,58 +323,287 @@ input[type="text"], input[type="number"] {
 }
 .modal-btns button {
     flex: 1;
-    padding: 8px 0;
-    border-radius: 5px;
+    padding: 10px 0;
+    border-radius: 6px;
     border: none;
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.2s, color 0.2s;
 }
 .modal-btns .btn-green {
-    background: #28a745;
+    background: #22c55e;
     color: #fff;
 }
 .modal-btns .btn-green:hover {
-    background: #218838;
+    background: #16a34a;
 }
 .modal-btns .btn-red {
-    background: #dc3545;
+    background: #ef4444;
     color: #fff;
 }
 .modal-btns .btn-red:hover {
-    background: #b71c1c;
+    background: #b91c1c;
 }
+
+/* === Estilos de los Botones Agregar === */
 button.add-btn {
-    background: #28a745;
+    background: #22c55e;
     color: #fff;
     border: none;
-    padding: 8px 16px;
-    border-radius: 5px;
+    padding: 9px 18px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background 0.3s;
+    font-size: 15px;
+    font-weight: 600;
+    transition: background 0.2s;
 }
 button.add-btn:hover {
-    background: #218838;
+    background: #16a34a;
 }
+
+/* === Estilos de Lista (¿Duplicado?) === */
+.list {
+    background: #f1f5f9; /* Light Slate */
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(100,116,139,0.04);
+    padding: 16px 18px;
+    margin-bottom: 16px;
+    transition: box-shadow 0.2s, border 0.2s;
+    border: 1px solid #e2e8f0; /* Pale Gray */
+}
+.list:hover {
+    box-shadow: 0 4px 16px rgba(59,130,246,0.08); /* Indigo Blue shadow */
+    border-color: #3b82f6; /* Indigo Blue */
+}
+
+
+/* === Estilos de las Tabs === */
 .tabs {
     display: flex;
-    gap: 10px;
-    margin-bottom: 15px;
+    gap: 12px;
+    margin-bottom: 24px;
+    background: #e5e5e5;
+    padding: 8px 12px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(34,34,34,0.06);
+    align-items: center;
+    justify-content: flex-start;
+    width: fit-content;
 }
 .tabs button {
-    background: #eee;
+    background: #f1f5f9;
+    color: #23272e;
     border: none;
-    padding: 8px 16px;
-    border-radius: 5px;
+    padding: 12px 32px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+    box-shadow: 0 1px 4px rgba(100,116,139,0.06);
+    outline: none;
+    margin: 0 2px;
+    letter-spacing: 0.01em;
+    position: relative;
+    min-width: 120px;
 }
 .tabs button.active {
     background: #007bff;
     color: #fff;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(0,123,255,0.13);
+    border-bottom: 3px solid #fff;
+    z-index: 1;
 }
-.tabs button:hover {
-    background: #0056b3;
-    color: #fff;
+.tabs button:hover:not(.active) {
+    background: #dde6f7;
+    color: #007bff;
+    box-shadow: 0 2px 8px rgba(0,123,255,0.08);
 }
+
+/* === Estilos del Formulario de Tareas === */
+#formTarea {
+    background: #ffffff; /* Fondo blanco */
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    padding: 24px;
+    max-width: 500px;
+    width: 100%;
+    animation: fadeIn 0.5s ease;
+}
+
+#formTarea .form-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+#formTarea .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#formTarea .form-group label {
+    font-weight: 600;
+    color: #1e293b; /* Charcoal Gray */
+}
+
+#formTarea .form-group input {
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1.5px solid #e2e8f0; /* Pale Gray */
+    font-size: 15px;
+    background: #f8fafc; /* Snow White */
+    transition: border 0.2s;
+}
+
+#formTarea .form-group input:focus {
+    outline: none;
+    border-color: #3b82f6; /* Indigo Blue */
+    background: #ffffff;
+}
+
+#formTarea .form-actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+#formTarea .form-actions button {
+    flex: 1;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+#formTarea .form-actions .btn {
+    background: #3b82f6; /* Indigo Blue */
+    color: #ffffff;
+}
+
+#formTarea .form-actions .btn:hover {
+    background: #2563eb; /* Darker Indigo Blue */
+}
+
+#formTarea .form-actions .btn-red {
+    background: #ef4444; /* Red */
+    color: #ffffff;
+}
+
+#formTarea .form-actions .btn-red:hover {
+    background: #b91c1c; /* Darker Red */
+}
+
+/* === Estilos de Resultados de Búsqueda === */
+.search-results {
+    background: #f8fafc; /* Fondo claro */
+    border: 1px solid #e2e8f0; /* Borde gris claro */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(100, 116, 139, 0.06); /* Sombra ligera */
+    padding: 12px;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 8px;
+}
+
+.search-results .result-item {
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background 0.2s, color 0.2s;
+    cursor: pointer;
+    font-size: 14px;
+    color: #1e293b; /* Gris oscuro */
+}
+
+.search-results .result-item:hover {
+    background: #e2e8f0; /* Fondo gris claro al pasar el cursor */
+    color: #007bff; /* Azul */
+}
+
+.search-results .result-item.selected {
+    background: #007bff; /* Azul */
+    color: #ffffff; /* Blanco */
+    font-weight: 600;
+}
+
+/* === Estilos de Etiquetas Seleccionadas === */
+.selected-label {
+    display: inline-block;
+    background: #e2e8f0; /* Fondo gris claro */
+    color: #1e293b; /* Gris oscuro */
+    border-radius: 12px;
+    padding: 6px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 4px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.selected-label:hover {
+    background: #007bff; /* Azul */
+    color: #ffffff; /* Blanco */
+}
+
+.selected-label .remove-btn {
+    margin-left: 8px;
+    background: transparent;
+    border: none;
+    color: #ef4444; /* Rojo */
+    font-size: 12px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.selected-label .remove-btn:hover {
+    color: #b91c1c; /* Rojo más oscuro */
+}
+
+/* === Estilos de Botones de Acción de Tareas === */
+.task-actions button {
+    background: #3b82f6; /* Azul índigo */
+    color: #ffffff; /* Blanco */
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.1);
+}
+
+.task-actions button:hover {
+    background: #2563eb; /* Azul índigo más oscuro */
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+.task-actions .edit-btn {
+    background: #f59e0b; /* Ámbar */
+}
+
+.task-actions .edit-btn:hover {
+    background: #d97706; /* Ámbar más oscuro */
+}
+
+.task-actions .finish-btn {
+    background: #22c55e; /* Verde */
+}
+
+.task-actions .finish-btn:hover {
+    background: #16a34a; /* Verde más oscuro */
+}
+
+.task-actions .delete-btn {
+    background: #ef4444; /* Rojo */
+}
+
+.task-actions .delete-btn:hover {
+    background: #b91c1c; /* Rojo más oscuro */
+}
+
