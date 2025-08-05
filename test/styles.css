@@ -18,8 +18,8 @@
     border: 1.5px solid #e2e8f0; /* Borde gris pálido */
 }
 .card:hover {
-    transform: translateY(-4px) scale(1.01); /* Ligero levantamiento al pasar el cursor */
-    box-shadow: 0 8px 24px rgba(59,130,246,0.08); /* Sombra mejorada al pasar el cursor */
+    box-shadow: 0 16px 40px rgba(59,130,246,0.18);
+    transform: translateY(-6px) scale(1.02); /* Elevación y sombra suave */
 }
 .card h3 {
     font-size: 15px; /* Tamaño de fuente más pequeño */
@@ -106,7 +106,7 @@
     box-sizing: border-box;
 }
 .flip-front:hover {
-    box-shadow: 0 8px 20px rgba(37,99,235,0.08);
+    box-shadow: 0 16px 40px rgba(59,130,246,0.18);
 }
 .flip-front canvas {
     width: 100% !important;
@@ -136,6 +136,7 @@ body {
     box-shadow: 0 2px 16px rgba(100,116,139,0.04); /* Slate Blue shadow */
     background: #cbd5e1; /* Gris claro intermedio */
     min-height: 100vh;
+    padding-top: 84px; /* Espacio para el navbar fijo */
 }
 
 /* === Estilos de la Navbar === */
@@ -149,9 +150,11 @@ body {
     box-shadow: 0 4px 24px 0 rgba(34,34,34,0.10), 0 1.5px 0 #222222 inset;
     align-items: center;
     min-height: 84px;
-    position: sticky;
+    position: fixed;
     top: 0;
-    z-index: 20;
+    left: 0;
+    width: 100vw;
+    z-index: 100;
     font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
     font-size: 19px;
     font-weight: 500;
