@@ -315,12 +315,14 @@ input[type="text"], input[type="number"] {
     background: #f8fafc; /* Snow White */
     color: #1e293b; /* Charcoal Gray */
     font-size: 15px;
-    transition: border 0.2s;
+    transition: border 0.2s, box-shadow 0.25s;
+    box-shadow: 0 2px 8px rgba(59,130,246,0.08) inset;
 }
 input[type="text"]:focus, input[type="number"]:focus {
     outline: none;
     border-color: #3b82f6; /* Indigo Blue */
     background: #fff;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.13), 0 2px 12px rgba(59,130,246,0.18) inset;
 }
 
 /* === Estilos de los Botones del Modal === */
